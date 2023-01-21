@@ -13,14 +13,21 @@ function blackFill(newDiv) {
 }
 
 
-// make divs to fill the grid
-for (let i = 0; i < gridSize; i++) {
-    for (let j = 0; j < gridSize; j++) {
-        const newDiv = document.createElement("div");
-        newDiv.classList.add("grid-item")
+function addEventColorInBlack(newDiv) {
+    newDiv.addEventListener('mouseover', () => blackFill(newDiv));
+}
 
-        newDiv.addEventListener('mouseover', () => blackFill(newDiv));
 
-        container.appendChild(newDiv);
+function makeDivs(gridSize) {
+    // make divs to fill the grid
+    for (let i = 0; i < gridSize; i++) {
+        for (let j = 0; j < gridSize; j++) {
+            const newDiv = document.createElement("div");
+            newDiv.classList.add("grid-item");
+            addEventColorInBlack(newDiv);
+            container.appendChild(newDiv);
+        }
     }
 }
+
+makeDivs(gridSize);
