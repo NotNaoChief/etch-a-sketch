@@ -2,9 +2,9 @@
 let gridSize = 16;
 
 // setup grid layout
-const container = document.querySelector(".grid");
-container.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
-container.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
+const grid = document.querySelector(".grid");
+grid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+grid.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
 
 
 // Color div black
@@ -25,7 +25,7 @@ function makeDivs(gridSize) {
             const newDiv = document.createElement("div");
             newDiv.classList.add("grid-item");
             addEventColorInBlack(newDiv);
-            container.appendChild(newDiv);
+            grid.appendChild(newDiv);
         }
     }
 }
