@@ -1,0 +1,11 @@
+.grid {
+    display: grid;
+    width: 500px;
+    height: 500px;
+    margin: auto;
+}
+
+
+.grid-item {
+    border: 1px black solid;
+}
