@@ -10,9 +10,20 @@ const gridSizeBtn = document.querySelector(".grid-size");
 gridSizeBtn.addEventListener('click', () => setNewGrid());
 
 function getNewGridSize() {
-    const newGridSize = prompt("Input a number between 1 and 100 to set the new grid size");
+    let newGridSize = prompt("Input a number between 1 and 100 to set the new grid size");
+    newGridSize = validateInput(newGridSize);
     return newGridSize;
 }
+
+
+function validateInput(newGridSize) {
+    if (isFinite(newGridSize) === true && parseInt(newGridSize) >= 1 && parseInt(newGridSize) <= 100) {
+        return newGridSize
+    } else {
+        getNewGridSize();
+    }
+}
+
 
 function setNewGrid() {
     const gridSizeString = getNewGridSize();
