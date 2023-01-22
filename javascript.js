@@ -1,13 +1,27 @@
-// set the grid to a default 16 x 16
 let gridSize = 16;
+
+let color = "rgb(0, 0, 0)";
+let randRed;
+let randGreen;
+let randBlue;
+
+let colorMode = 'random';
+
 
 // setup grid layout
 const grid = document.querySelector(".grid");
 
-
 // change grid size
 const gridSizeBtn = document.querySelector(".grid-size");
 gridSizeBtn.addEventListener('click', () => setNewGrid());
+
+// change color mode
+const blackFillBtn = document.querySelector('.black');
+blackFillBtn.addEventListener('click', () => colorMode = 'black')
+
+const randFillBtn = document.querySelector('.random');
+randFillBtn.addEventListener('click', () => colorMode = 'random');
+
 
 function getNewGridSize() {
     let newGridSize = prompt("Input a number between 1 and 100 to set the new grid size");
@@ -34,13 +48,34 @@ function setNewGrid() {
 
 
 // Color div black
-function blackFill(newDiv) {
-    newDiv.style.background = "black"
+function setColor(newDiv, colorMode) {
+    switch (colorMode) {
+        case 'black':
+            color = "rgb(0, 0, 0)"
+            break;
+        case 'random':
+            getRandRGB();
+            color = `rgb(${randRed}, ${randGreen}, ${randBlue}`
+    }
+    newDiv.style.background = color;
 }
 
 
-function addEventColorInBlack(newDiv) {
-    newDiv.addEventListener('mouseover', () => blackFill(newDiv));
+function getRandRGB() {
+    randRed = getRandInt();
+    randGreen = getRandInt();
+    randBlue = getRandInt();
+}
+
+
+function getRandInt() {
+    const randInt = Math.floor(Math.random() * 255);
+    return randInt
+}
+
+
+function addEventColorIn(newDiv) {
+    newDiv.addEventListener('mouseover', () => setColor(newDiv, colorMode));
 }
 
 
@@ -58,7 +93,7 @@ function makeDivs(gridSize) {
         for (let j = 0; j < gridSize; j++) {
             const newDiv = document.createElement("div");
             newDiv.classList.add("grid-item");
-            addEventColorInBlack(newDiv);
+            addEventColorIn(newDiv);
             grid.appendChild(newDiv);
         }
     }
